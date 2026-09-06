@@ -34,21 +34,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    // ĐOẠN MÃ MỚI ĐƯỢC THÊM VÀO Ở ĐÂY 👇
-    sourceSets {
-        getByName("main") {
-            res.srcDirs(
-                "src/main/res",
-                "src/main/res-layouts/auth",
-                "src/main/res-layouts/dany",
-                "src/main/res-layouts/home",
-                "src/main/res-layouts/hoso",
-                "src/main/res-layouts/lichhoc",
-                "src/main/res-layouts/napdulieuai",
-                "src/main/res-layouts/welcome"
-            )
-        }
-    }
 
 }
 
