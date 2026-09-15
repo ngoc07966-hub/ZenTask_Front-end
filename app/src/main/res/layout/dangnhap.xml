@@ -1,134 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bg_gradient">
 
-    <!-- Khoảng trống phía trên đẩy card xuống giữa/dưới -->
+   <!--Chứa circle_gradient-->
     <View
-        android:layout_width="match_parent"
-        android:layout_height="183dp" />
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="-70dp"
+        android:layout_marginEnd="-90dp"
+        android:background="@drawable/bg_circle_gradient" />
+    <View
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="top|start"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="-60dp"
+        android:background="@drawable/bg_circle_gradient" />
 
-    <!-- CARD TRẮNG chứa toàn bộ form đăng nhập -->
     <LinearLayout
-        android:id="@+id/card_login"
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="408dp"
-        android:background="@drawable/bg_card_white"
-        android:elevation="16dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="24dp"
-        android:paddingTop="24dp"
-        android:paddingBottom="20dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- Tiêu đề -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đăng nhập"
-            android:textColor="#1F1235"
-            android:textSize="24sp"
-            android:textStyle="bold" />
 
-        <!-- Mô tả -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Chào mừng bạn trở lại với ZenTask"
-            android:textColor="#8A8A8A"
-            android:textSize="14sp" />
-
-        <!-- Ô nhập Email -->
-        <EditText
-            android:id="@+id/edt_email"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_input_field"
-            android:drawableStart="@drawable/ic_email"
-            android:drawablePadding="10dp"
-            android:hint="Email của bạn"
-            android:inputType="textEmailAddress"
-            android:paddingHorizontal="16dp"
-            android:textColorHint="#9A9A9A"
-            android:textSize="14sp" />
+            android:layout_height="183dp" />
 
-        <!-- Ô nhập Mật khẩu (icon ổ khóa để bổ sung sau) -->
-        <EditText
-            android:id="@+id/edt_password"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_input_field"
-            android:drawablePadding="10dp"
-            android:hint="Mật khẩu"
-            android:inputType="textPassword"
-            android:paddingHorizontal="16dp"
-            android:textColorHint="#9A9A9A"
-            android:textSize="14sp" />
-
-        <!-- Quên mật khẩu -->
-        <TextView
-            android:id="@+id/tv_forgot_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="Quên mật khẩu?"
-            android:textColor="#5B4E8C"
-            android:textSize="13sp" />
-
-        <!-- Nút Đăng nhập -->
-        <TextView
-            android:id="@+id/btn_dangnhap"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/btn_primary"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:outlineProvider="background"
-            android:text="Đăng nhập"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <!-- Chưa có tài khoản? Đăng ký -->
+        <!-- form đăng nhập -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/card_login"
+            android:layout_width="373dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_card_white"
+            android:elevation="16dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="20dp">
 
+            <!-- Tiêu đề -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chưa có tài khoản? "
+                android:text="Đăng nhập"
+                android:textColor="#1F1235"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- Mô tả -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Chào mừng bạn trở lại với ZenTask"
                 android:textColor="#8A8A8A"
-                android:textSize="13sp" />
+                android:textSize="14sp" />
 
+            <!-- Ô nhập Email -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="20dp"
+                app:boxBackgroundMode="none"
+                app:errorEnabled="true"
+                app:hintEnabled="false"
+                app:startIconDrawable="@drawable/icon_email"
+                app:startIconTint="#63587B">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/bg_input_field"
+                    android:hint="Email của bạn"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="16dp"
+                    android:textColorHint="#9A9A9A"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Ô nhập Mật khẩu -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_password"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="12dp"
+                app:boxBackgroundMode="none"
+                app:endIconMode="password_toggle"
+                app:endIconTint="#63587B"
+                app:errorEnabled="true"
+                app:hintEnabled="false"
+                app:startIconDrawable="@drawable/ic_password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/bg_input_field"
+                    android:hint="Mật khẩu"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp"
+                    android:textColorHint="#9A9A9A"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Nút Đăng nhập -->
             <TextView
-                android:id="@+id/tv_dangky"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btn_dangnhap"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/btn_primary"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Đăng ký"
-                android:textColor="#2D1B3D"
-                android:textSize="13sp"
+                android:gravity="center"
+                android:outlineProvider="background"
+                android:text="Đăng nhập"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
                 android:textStyle="bold" />
+
+            <!-- Chưa có tài khoản? Đăng ký -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chưa có tài khoản? "
+                    android:textColor="#8A8A8A"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_dangky"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Đăng ký"
+                    android:textColor="#2D1B3D"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
+        <View
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_marginTop="-70dp"
+            android:layout_marginEnd="-90dp"
+            android:background="@drawable/bg_circle_gradient" />
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>
