@@ -7,73 +7,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bg_gradient"
     tools:context=".activities.WelcomeActivity">
-        <!-- Icon chữ Z -->
+
+    <!-- Icon chữ Z + ZenTask -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="70dp">
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="60dp">
+
         <TextView
             android:id="@+id/tv_logo_icon"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:background="@drawable/bg_logo_icon"
             android:gravity="center"
             android:text="Z"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
-        <!-- Chữ ZenTask -->
         <TextView
             android:id="@+id/tv_logo_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
             android:text="ZenTask"
-            android:textColor="#100D0D"
-            android:textSize="16sp"
+            android:textColor="#2D1B3D"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
 
+    <!-- Icon app trung tâm -->
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@mipmap/ic_logo_app"
-        android:layout_marginTop="110dp"
-        android:layout_gravity="center_horizontal">
-    </ImageView>
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="70dp"
+        android:background="@mipmap/ic_logo_app" />
 
+    <!-- Tiêu đề -->
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Học Tập Thông Minh Hơn"
-            android:paddingHorizontal="24dp"
-            android:textColor="#050303"
-        android:layout_marginTop="15dp"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textAlignment="center">
-        </TextView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Trợ lý Al giúp bạn lên kế hoạch, tổ chức và chinh phục mọi môn học "
-            android:textColor="#050303"
-            android:paddingHorizontal="24dp"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_marginTop="20dp">
-        </TextView>
-    <Button
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bắt Đầu Ngay"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="20dp">
-    </Button>
+        android:text="Học thông minh hơn"
+        android:paddingHorizontal="30dp"
+        android:textColor="#1F1235"
+        android:layout_marginTop="24dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <!-- Mô tả -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Trợ lý AI giúp bạn lên kế hoạch, tổ chức và chinh phục mọi môn học."
+        android:textColor="#8A8A8A"
+        android:paddingHorizontal="32dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="12dp" />
+
+    <!-- Khoảng đệm co giãn - đẩy 2 nút xuống đáy màn hình -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Nút chính: Bắt đầu ngay -->
+    <TextView
+        android:id="@+id/btn_BatDau"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/btn_primary"
+        android:text="Bắt đầu ngay"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- Nút phụ: Đã có tài khoản? Đăng Nhập -->
+    <TextView
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/btn_outline"
+        android:text="Đã có tài khoản? Đăng Nhập"
+        android:textColor="#2D1B3D"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true" />
 
 </LinearLayout>
