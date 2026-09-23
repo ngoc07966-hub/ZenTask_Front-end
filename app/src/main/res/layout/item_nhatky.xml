@@ -29,7 +29,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_gradient" />
+            android:src="@drawable/ic_nhatky" />
     </FrameLayout>
 
     <!--Tiêu đề + thời gian-->

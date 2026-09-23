@@ -1,6 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Thanh cuộn nội dung-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="90dp">
+
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!--Hàng trạng thái: badge AI GENERATED + thời gian cập nhật-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_badge_ai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_banner"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:text="AI GENERATED"
+                    android:textColor="#7B3FA0"
+                    android:textSize="11sp"
+                    android:textStyle="bold">
+                </TextView>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                </View>
+
+                <TextView
+                    android:id="@+id/tv_thoi_gian_cap_nhat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cập nhật cách đây 5 phút"
+                    android:textColor="#9B8AAE"
+                    android:textSize="12sp">
+                </TextView>
+            </LinearLayout>
+
+            <!--Tiêu đề trang-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Dàn Ý Học Tập AI"
+                android:textColor="#2B1B3D"
+                android:textSize="22sp"
+                android:textStyle="bold">
+            </TextView>
+
+            <!--Tên môn học / chủ đề-->
+            <TextView
+                android:id="@+id/tv_ten_mon_hoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Toán rời rạc"
+                android:textColor="#9B8AAE"
+                android:textSize="14sp">
+            </TextView>
+
+            <!--Danh sách dàn ý dạng cây-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_dan_y"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_dan_y">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <!--Nút lên lịch tự động-->
+            <TextView
+                android:id="@+id/btn_len_lich"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_primary"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:paddingVertical="16dp"
+                android:text="Lên lịch học tự động"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="16sp">
+            </TextView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!--Thanh điều hướng-->
+    <include
+        android:id="@+id/bottom_nav_include"
+        layout="@layout/thanhdieuhuong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginBottom="9dp">
+    </include>
+
+</FrameLayout>

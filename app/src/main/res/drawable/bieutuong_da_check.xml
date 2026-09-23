@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--Lớp 1: hình tròn nền tím đậm-->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#4A2E6B">
+            </solid>
+            <size
+                android:width="24dp"
+                android:height="24dp">
+            </size>
+        </shape>
+    </item>
+
+    <!--Lớp 2: dấu check, vẽ bằng vector đè lên trên-->
+    <item
+        android:width="14dp"
+        android:height="14dp"
+        android:gravity="center"
+        android:drawable="@drawable/ic_check">
+    </item>
+
+</layer-list>

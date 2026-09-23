@@ -1,6 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="90dp">
+
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!--Thẻ lịch tháng-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/nen_the_dan_y"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!--Tháng và năm-->
+                <TextView
+                    android:id="@+id/tv_thang_nam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tháng 8, 2026"
+                    android:textColor="#2B1B3D"
+                    android:textSize="16sp"
+                    android:textStyle="bold">
+                </TextView>
+
+                <!--Hàng tên viết tắt của 7 ngày trong tuần-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:weightSum="7">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="T2"
+                        android:textColor="#9B8AAE"
+                        android:textSize="12sp">
+                    </TextView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="T3"
+                        android:textColor="#9B8AAE"
+                        android:textSize="12sp">
+                    </TextView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="T4"
+                        android:textColor="#9B8AAE"
+                        android:textSize="12sp">
+                    </TextView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="T5"
+                        android:textColor="#9B8AAE"
+                        android:textSize="12sp">
+                    </TextView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="T6"
+                        android:textColor="#9B8AAE"
+                        android:textSize="12sp">
+                    </TextView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="T7"
+                        android:textColor="#9B8AAE"
+                        android:textSize="12sp">
+                    </TextView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="CN"
+                        android:textColor="#9B8AAE"
+                        android:textSize="12sp">
+                    </TextView>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_hang_ngay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="7"
+                    tools:itemCount="35"
+                    tools:listitem="@layout/item_lich">
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <!--Hạn nộp đồ án-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📅"
+                        android:textSize="13sp">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_han_nop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="Hạn nộp đồ án - 15/09"
+                        android:textColor="#63587B"
+                        android:textSize="13sp">
+                    </TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Tiêu đề: Hôm nay-->
+            <TextView
+                android:id="@+id/tv_tieu_de_hom_nay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Hôm nay - 25/08"
+                android:textColor="#2B1B3D"
+                android:textSize="17sp"
+                android:textStyle="bold">
+            </TextView>
+
+            <!--Danh sách việc hôm nay-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_viec_hom_nay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_daily_task">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <!--Tiêu đề: Ngày mai-->
+            <TextView
+                android:id="@+id/tv_tieu_de_ngay_mai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Ngày mai - 26/08"
+                android:textColor="#2B1B3D"
+                android:textSize="17sp"
+                android:textStyle="bold">
+            </TextView>
+
+            <!--Danh sách việc ngày mai-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_viec_ngay_mai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_daily_task">
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/id_thanhdieuhuong"
+        layout="@layout/thanhdieuhuong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginBottom="9dp">
+    </include>
+
+</FrameLayout>

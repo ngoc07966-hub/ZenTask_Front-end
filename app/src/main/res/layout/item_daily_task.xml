@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_task"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/nen_the_dan_y"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <!--Checkbox tròn đánh dấu hoàn thành-->
+    <CheckBox
+        android:id="@+id/cb_hoan_thanh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/checkbox_tron"
+        android:minWidth="48dp"
+        android:minHeight="48dp">
+    </CheckBox>
+
+    <!--Cột tên mục + môn học-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_ten_muc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đọc Chương 1.1 - Bối cảnh"
+            android:textColor="#2B1B3D"
+            android:textSize="15sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_ten_mon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Đồ án"
+            android:textColor="#7B3FA0"
+            android:textSize="12sp">
+        </TextView>
+    </LinearLayout>
+
+    <!--Nút menu 3 chấm-->
+    <TextView
+        android:id="@+id/btn_menu_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:gravity="center"
+        android:text="⋯"
+        android:textColor="#9B8AAE"
+        android:textSize="18sp">
+    </TextView>
+
+</LinearLayout>
