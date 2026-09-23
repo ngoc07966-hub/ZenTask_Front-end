@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Card môn học - dùng trong rv_monhoc-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="12dp"
+    android:background="@drawable/bg_card_white"
+    android:elevation="4dp"
+    android:orientation="vertical"
+    android:padding="14dp">
+
+    <!-- Badge AI đã quét - chỉ hiện khi môn được tạo từ tài liệu AI -->
+    <TextView
+        android:id="@+id/tv_badge_ai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_badge_outline"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp"
+        android:text="AI ĐÃ QUÉT"
+        android:textColor="#3B2A54"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <!-- Tên môn học -->
+    <TextView
+        android:id="@+id/tv_tenmonhoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Toán cao cấp"
+        android:textColor="#2B1B3D"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <!-- Nhãn tiến độ -->
+    <TextView
+        android:id="@+id/tv_tiendo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Tiến độ: 65%"
+        android:textColor="#9B8AAE"
+        android:textSize="11sp" />
+
+    <!-- Thanh tiến độ -->
+    <ProgressBar
+        android:id="@+id/pb_tiendo"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginTop="8dp"
+        android:max="100"
+        android:progress="65"
+        android:progressDrawable="@drawable/bg_progress_track" />
+
+</LinearLayout>

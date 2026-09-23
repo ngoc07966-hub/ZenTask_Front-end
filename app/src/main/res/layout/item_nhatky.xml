@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Item nhật ký - dùng trong rv_nhatky-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_card_white"
+    android:clickable="true"
+    android:elevation="4dp"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <!--Icon tròn bên trái-->
+    <FrameLayout
+        android:layout_width="36dp"
+        android:layout_height="36dp">
+
+        <View
+            android:id="@+id/bg_icon_circle_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_icon_circle" />
+
+        <ImageView
+            android:id="@+id/ic_nhatky"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_gradient" />
+    </FrameLayout>
+
+    <!--Tiêu đề + thời gian-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_tieude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Hoàn thành Chương 3 - Toán"
+            android:textColor="#2B1B3D"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_thoigian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="2 giờ trước"
+            android:textColor="#9B8AAE"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!--Mũi tên-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="›"
+        android:textColor="#C7BBD6"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

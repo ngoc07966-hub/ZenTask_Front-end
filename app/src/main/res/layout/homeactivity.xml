@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient">
+
+    <!--Thanh cuộn nội dung-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="90dp">
+
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_marginTop="10dp">
+
+                <!-- Avatar tròn -->
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_avatar_circle"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:text="N">
+                </TextView>
+
+                <!-- View trống đẩy 2 bên ra 2 đầu -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                </View>
+
+                <!-- Badge streak -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_badge_streak"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="6dp"
+                    android:text="🔥 12 ngày"
+                    android:textColor="#B23A6B"
+                    android:textSize="15sp"
+                    android:textStyle="bold">
+                </TextView>
+            </LinearLayout>
+
+            <!-- Banner -->
+            <FrameLayout
+                android:id="@+id/banner_cunghocnao"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_banner"
+                android:clipChildren="false">
+
+                <!-- Tiêu đề banner -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="24dp"
+                    android:text="Cùng Học Nào"
+                    android:textColor="#2B1B3D"
+                    android:textSize="20sp"
+                    android:textStyle="bold">
+                </TextView>
+
+                <!--mascot -->
+                <ImageView
+                    android:id="@+id/img_mascot"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="-18dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_mascot">
+                </ImageView>
+            </FrameLayout>
+
+            <!-- Không gian học -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Không gian học"
+                    android:textColor="#2B1B3D"
+                    android:textSize="16sp"
+                    android:textStyle="bold">
+                </TextView>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                </View>
+
+                <TextView
+                    android:id="@+id/tv_xemtatca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:text="Xem tất cả"
+                    android:textColor="#9B8AAE"
+                    android:textSize="13sp">
+                </TextView>
+            </LinearLayout>
+
+            <!--Danh sách môn học-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_monhoc"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_monhoc">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp">
+            </View>
+            <!--Tiêu đề Nhật ký-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="4dp"
+                android:text="Nhật ký gần đây"
+                android:textColor="#2B1B3D"
+                android:textSize="16sp"
+                android:textStyle="bold">
+            </TextView>
+
+            <!--Danh sách nhật ký -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_nhatky"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:nestedScrollingEnabled="false"
+                android:paddingHorizontal="16dp"
+                tools:listitem="@layout/item_nhatky"
+                tools:itemCount="1" >
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/btn_them"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="86dp"
+        android:background="@drawable/btn_primary"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:focusable="true"
+        android:gravity="center"
+        android:outlineProvider="background"
+        android:text="+"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        android:textStyle="bold">
+    </TextView>
+
+    <!--Thanh điều hướng-->
+    <include
+        android:id="@+id/bottom_nav_include"
+        layout="@layout/thanhdieuhuong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginBottom="9dp">
+    </include>
+
+</FrameLayout>

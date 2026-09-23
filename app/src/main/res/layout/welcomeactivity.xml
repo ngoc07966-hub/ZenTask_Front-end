@@ -78,12 +78,12 @@
                 android:background="@drawable/bg_circle_gradient" />
 
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="159dp"
+                android:layout_height="154dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_logo_app"
+                android:contentDescription="@string/app_name"
                 android:scaleType="fitCenter"
-                android:contentDescription="@string/app_name" />
+                android:src="@mipmap/ic_logo_app" />
 
         </FrameLayout>
 
@@ -118,7 +118,7 @@
 
         <!-- Nút chính: Bắt đầu ngay -->
         <Button
-            android:id="@+id/btn_BatDau"
+            android:id="@+id/btnBatDau"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginHorizontal="24dp"
@@ -138,7 +138,7 @@
 
         <!-- Nút phụ: Đã có tài khoản? Đăng Nhập -->
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btnlogin"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginHorizontal="24dp"

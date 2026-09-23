@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_nav"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_white"
+    android:elevation="8dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingVertical="8dp">
+
+    <!-- Tổng quan -->
+    <LinearLayout
+        android:id="@+id/tab_tongquan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/pill_tongquan"
+            android:layout_width="44dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_nav_pill">
+
+            <ImageView
+                android:id="@+id/ic_tongquan"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_tongquan"
+                app:tint="#6C4AB6" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_tongquan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Tổng quan"
+            android:textColor="#6C4AB6"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Nạp liệu -->
+    <LinearLayout
+        android:id="@+id/tab_naplieu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/pill_naplieu"
+            android:layout_width="44dp"
+            android:layout_height="30dp">
+
+            <ImageView
+                android:id="@+id/ic_naplieu"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_napdulieu"
+                app:tint="#ADA3BD" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_naplieu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Nạp liệu"
+            android:textColor="#ADA3BD"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Dàn ý -->
+    <LinearLayout
+        android:id="@+id/tab_dany"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/pill_dany"
+            android:layout_width="44dp"
+            android:layout_height="30dp">
+
+            <ImageView
+                android:id="@+id/ic_dany"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_dany"
+                app:tint="#ADA3BD" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_dany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Dàn ý"
+            android:textColor="#ADA3BD"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Lịch học -->
+    <LinearLayout
+        android:id="@+id/tab_lichhoc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/pill_lichhoc"
+            android:layout_width="44dp"
+            android:layout_height="30dp">
+
+            <ImageView
+                android:id="@+id/ic_lichhoc"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_lichhoc"
+                app:tint="#ADA3BD" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_lichhoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Lịch học"
+            android:textColor="#ADA3BD"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Thông tin -->
+    <LinearLayout
+        android:id="@+id/tab_thongtin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/pill_thongtin"
+            android:layout_width="44dp"
+            android:layout_height="30dp">
+
+            <ImageView
+                android:id="@+id/ic_thongtin"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_thongtin"
+                app:tint="#ADA3BD" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_thongtin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Thông tin"
+            android:textColor="#ADA3BD"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+</LinearLayout>
