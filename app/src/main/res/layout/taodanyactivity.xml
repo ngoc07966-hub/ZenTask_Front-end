@@ -29,8 +29,7 @@
                 android:text="Tạo Dàn Ý Bằng AI"
                 android:textColor="#2B1B3D"
                 android:textSize="24sp"
-                android:textStyle="bold">
-            </TextView>
+                android:textStyle="bold" />
 
             <!--Mô tả ngắn-->
             <TextView
@@ -39,10 +38,9 @@
                 android:layout_marginTop="4dp"
                 android:text="AI sẽ tự động lập dàn ý học tập chi tiết từ tài liệu"
                 android:textColor="#9B8AAE"
-                android:textSize="14sp">
-            </TextView>
+                android:textSize="14sp" />
 
-            <!--Nhóm chọn loại mẫu (Đề án / Ôn thi / Báo cáo / Tự do)-->
+            <!--Nhóm chọn loại mẫu (index chip = giá trị loaiMau gửi lên server)-->
             <LinearLayout
                 android:id="@+id/ll_loai_mau"
                 android:layout_width="match_parent"
@@ -53,7 +51,7 @@
 
                 <TextView
                     android:id="@+id/tv_chip_dean"
-                    android:layout_width="10dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginEnd="6dp"
@@ -61,16 +59,15 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
-                    android:paddingVertical="10dp"
                     android:minHeight="48dp"
+                    android:paddingVertical="10dp"
                     android:text="Đề án"
                     android:textColor="#9B8AAE"
-                    android:textSize="14sp">
-                </TextView>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_chip_onthi"
-                    android:layout_width="10dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginEnd="6dp"
@@ -82,13 +79,12 @@
                     android:paddingVertical="10dp"
                     android:text="Ôn thi"
                     android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:textSize="14sp">
-                </TextView>
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_chip_baocao"
-                    android:layout_width="10dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginEnd="6dp"
@@ -96,16 +92,15 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
-                    android:paddingVertical="10dp"
                     android:minHeight="48dp"
+                    android:paddingVertical="10dp"
                     android:text="Báo cáo"
                     android:textColor="#9B8AAE"
-                    android:textSize="14sp">
-                </TextView>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_chip_tudo"
-                    android:layout_width="10dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/nen_chip_chuachon"
@@ -116,30 +111,31 @@
                     android:paddingVertical="10dp"
                     android:text="Tự do"
                     android:textColor="#9B8AAE"
-                    android:textSize="14sp">
-                </TextView>
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <!--Ô nhập tên môn học / chủ đề-->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_ten_mon_hoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:background="@drawable/nen_o_nhap"
                     android:hint="Nhập tên môn học hoặc chủ đề (VD: Toán rời rạc)..."
+                    android:imeOptions="actionDone"
                     android:inputType="text"
+                    android:maxLength="30"
                     android:padding="14dp"
                     android:textColor="#2B1B3D"
                     android:textColorHint="#9B8AAE"
-                    android:textSize="14sp">
-                </com.google.android.material.textfield.TextInputEditText>
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--Khu vực kéo thả / chọn file-->
+            <!--Khu vực chọn file-->
             <LinearLayout
                 android:id="@+id/ll_upload"
                 android:layout_width="match_parent"
@@ -156,18 +152,16 @@
                     android:id="@+id/img_upload_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_taifile">
-                </ImageView>
+                    android:src="@drawable/ic_taifile" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Kéo thả hoặc chọn file PDF, Ảnh"
+                    android:text="Chạm để chọn file PDF hoặc ảnh"
                     android:textColor="#2B1B3D"
-                    android:textStyle="bold"
-                    android:textSize="15sp">
-                </TextView>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -175,11 +169,10 @@
                     android:layout_marginTop="4dp"
                     android:text="Hỗ trợ: PDF, JPG, PNG (tối đa 20MB)"
                     android:textColor="#9B8AAE"
-                    android:textSize="12sp">
-                </TextView>
+                    android:textSize="12sp" />
             </LinearLayout>
 
-            <!--Tên file đã chọn (ẩn mặc định, hiện sau khi chọn file)-->
+            <!--Tên file đã chọn (ẩn mặc định)-->
             <TextView
                 android:id="@+id/tv_ten_file_da_chon"
                 android:layout_width="match_parent"
@@ -188,8 +181,7 @@
                 android:text=""
                 android:textColor="#2B1B3D"
                 android:textSize="13sp"
-                android:visibility="gone">
-            </TextView>
+                android:visibility="gone" />
 
             <!--Ghi chú mẹo sử dụng-->
             <LinearLayout
@@ -204,18 +196,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="⚠️"
-                    android:textSize="14sp">
-                </TextView>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="1"
                     android:text="AI phân tích tốt nhất khi tài liệu rõ chữ, không bị bóng mờ."
                     android:textColor="#B08900"
-                    android:textSize="12sp">
-                </TextView>
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <!--Nút xử lý AI-->
@@ -229,11 +219,10 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:paddingVertical="16dp"
-                android:text="Xử lý AI ✨"
+                android:text="Tạo Dàn Ý"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:textSize="16sp">
-            </TextView>
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -245,9 +234,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginRight="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginBottom="9dp">
-    </include>
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="9dp" />
+
+    <!--MỚI: lớp phủ loading — đặt CUỐI CÙNG để nằm trên mọi view, clickable=true để chặn chạm xuyên qua-->
+    <LinearLayout
+        android:id="@+id/ll_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#992B1B3D"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:indeterminateTint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tv_loading_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Đang xử lý..."
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </FrameLayout>

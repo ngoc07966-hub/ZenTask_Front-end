@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient">
+
+    <!--Khung chứa nội dung chính-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--Thanh tiêu đề trang-->
+        <LinearLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+
+            <!--Nút Quay lại-->
+            <TextView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="←"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#2B1B3D"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <!--Tiêu đề-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Không gian học"
+                android:textColor="#2B1B3D"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!--Danh sách dạng lưới-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tatcamonhoc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="90dp"
+            android:clipToPadding="false"/>
+    </LinearLayout>
+
+    <!--Nút Thêm mới-->
+    <TextView
+        android:id="@+id/btn_them_monhoc"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/btn_primary"
+        android:text="+"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:elevation="8dp"/>
+
+    <!--Thanh điều hướng-->
+    <include
+        android:id="@+id/bottom_nav_include"
+        layout="@layout/thanhdieuhuong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginBottom="9dp">
+    </include>
+
+</FrameLayout>

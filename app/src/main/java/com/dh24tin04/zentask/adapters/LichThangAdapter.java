@@ -22,9 +22,9 @@ public class LichThangAdapter extends RecyclerView.Adapter<LichThangAdapter.Ngay
         public final int soNgay;
         public final int thang;
         public final int nam;
-        public final boolean thuocThangHienTai; // false = ngày đệm của tháng trước/sau
-        public boolean duocChon;                // true = đang được người dùng chọn
-        public final boolean laHomNay;           // true = đúng ngày hôm nay thực tế
+        public final boolean thuocThangHienTai;
+        public boolean duocChon;
+        public final boolean laHomNay;
 
         public NgayLich(int soNgay, int thang, int nam, boolean thuocThangHienTai,
                         boolean duocChon, boolean laHomNay) {

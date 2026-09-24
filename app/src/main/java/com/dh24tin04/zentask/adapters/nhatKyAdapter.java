@@ -12,16 +12,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dh24tin04.zentask.R;
-import com.dh24tin04.zentask.models.NhatKyItem;
+import com.dh24tin04.zentask.models.DanY; // Đổi thành Import Model DanY
 
 import java.util.List;
 
-public class NhatKyAdapter extends RecyclerView.Adapter<NhatKyAdapter.NhatKyViewHolder> {
+public class nhatKyAdapter extends RecyclerView.Adapter<nhatKyAdapter.NhatKyViewHolder> {
 
-    private final List<NhatKyItem> items;
-    private final OnItemClickListener<NhatKyItem> onClick;
+    // 1. Đổi toàn bộ NhatKyItem thành DanY
+    private final List<DanY> items;
+    private final OnItemClickListener onClick;
 
-    public NhatKyAdapter(List<NhatKyItem> items, OnItemClickListener<NhatKyItem> onClick) {
+    // 2. Khai báo Interface cho sự kiện Click ngay trong Adapter
+    public interface OnItemClickListener {
+        void onItemClick(DanY item);
+    }
+
+    public nhatKyAdapter(List<DanY> items, OnItemClickListener onClick) {
         this.items = items;
         this.onClick = onClick;
     }
@@ -56,17 +62,19 @@ public class NhatKyAdapter extends RecyclerView.Adapter<NhatKyAdapter.NhatKyView
             tvThoiGian = itemView.findViewById(R.id.tv_thoigian);
         }
 
-        void bind(NhatKyItem item, OnItemClickListener<NhatKyItem> onClick) {
-            int mau = Color.parseColor(item.getLoai().getMauSac());
-
-            icNhatKy.setImageResource(item.getLoai().getIconRes());
+        void bind(DanY item, OnItemClickListener onClick) {
+            // Thiết lập màu xanh lá mặc định cho các task đã hoàn thành
+            int mau = Color.parseColor("#4CAF50");
             icNhatKy.setColorFilter(mau);
 
             GradientDrawable vienDrawable = (GradientDrawable) vongTronNen.getBackground().mutate();
-            vienDrawable.setStroke(4, mau); // 4px ~ 1.5dp
+            vienDrawable.setStroke(4, mau);
 
+            // Gắn dữ liệu từ Database vào Giao diện
             tvTieuDe.setText(item.getTieuDe());
-            tvThoiGian.setText(item.getThoiGianHienThi());
+            // Vì DanY trả về Date dưới dạng String, ta lấy NgayHoanThanh để hiển thị
+            tvThoiGian.setText(item.getNgayHoanThanh());
+
             itemView.setOnClickListener(v -> onClick.onItemClick(item));
         }
     }
