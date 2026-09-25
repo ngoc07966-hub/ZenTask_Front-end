@@ -40,7 +40,7 @@ ZenTask1/
         │   │   │   ├── DanYActivity.java             # Xem dàn ý dạng cây
         │   │   │   ├── LichHocActivity.java          # Lịch học theo tháng
         │   │   │   ├── TaoLichActivity.java          # Tạo lịch học
-        │   │   │   ├── TaoWorkspaceActivity.java     # Tạo môn học / workspace
+        │   │   │   ├── TaoWorkspaceActivity.java     # (Không dùng nữa, thay bằng TaoDanYActivity)
         │   │   │   └── HoSoActivity.java             # Hồ sơ cá nhân
         │   │   ├── adapters/                     # Adapter cho RecyclerView
         │   │   │   ├── MonHocAdapter.java            # Thẻ môn học (ngang / lưới)
@@ -52,6 +52,7 @@ ZenTask1/
         │   │   │   └── OnItemClickListener.java      # Interface click item dùng chung
         │   │   ├── models/                       # Lớp dữ liệu (DTO)
         │   │   │   ├── User.java, Subject.java, DanY.java
+        │   │   │   ├── LichHoc.java                  # Mục học theo ngày (kèm tên môn)
         │   │   │   ├── HomeData.java, HomeResponse.java
         │   │   │   ├── TaoSubjectRequest.java, TaoSubjectData.java
         │   │   │   ├── MonHocItem.java, NhatKyItem.java
@@ -67,7 +68,8 @@ ZenTask1/
         │   │       ├── ApiErrorParser.java           # Lấy thông báo lỗi từ response
         │   │       ├── TokenManager.java             # Quản lý token đăng nhập
         │   │       ├── DateUtils.java                # Xử lý ngày tháng
-        │   │       └── OutlineTreeBuilder.java       # Dựng cây dàn ý
+        │   │       ├── OutlineTreeBuilder.java       # Dựng cây dàn ý
+        │   │       └── ThanhDieuHuong.java           # Thanh điều hướng dưới dùng chung
         │   ├── res/
         │   │   ├── layout/                       # Giao diện XML
         │   │   │   ├── welcomeactivity.xml, dangnhap.xml, dangky.xml
