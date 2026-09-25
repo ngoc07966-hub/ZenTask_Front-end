@@ -1,130 +1,145 @@
-# 📋 BÁO CÁO TỔNG HỢP CÁC HẠNG MỤC ĐÃ THỰC HIỆN - DỰ ÁN ZENTASK
+# 📋 BÁO CÁO TIẾN ĐỘ DỰ ÁN ZENTASK
 
-## 🚀 1. Tổng Quan Dự Án
-- **Tên ứng dụng:** ZenTask - Ứng dụng Quản lý & Lên lịch Học tập Tự động Hỗ trợ AI
-- **Package Name:** `com.dh24tin04.zentask`
-- **Nền tảng & Ngôn ngữ:** Android (Java), Android SDK 36 (Min SDK 28)
-- **Thư viện chính:** Retrofit 2.11.0, Gson 2.11.0, Material Components 1.14.0, ConstraintLayout 2.2.2, OkHttp3
+> Ứng dụng Android quản lý & lên lịch học tập hỗ trợ AI – `com.dh24tin04.zentask`
+> Báo cáo được lập dựa trên mã nguồn hiện tại của nhánh `master`.
 
 ---
 
-## 🏗️ 2. Kiến Trúc & Cấu Trúc Dự Án
+## 📊 1. Tổng quan tiến độ
 
-### 2.1. Cấu Trúc Gói (Package Structure)
-```text
-com.dh24tin04.zentask
-├── activities/            # Quản lý giao diện & Luồng xử lý UI
-│   ├── WelcomeActivity.java          # Màn hình chào mừng & kiểm tra phiên đăng nhập
-│   ├── DangNhapActivity.java         # Màn hình đăng nhập tài khoản
-│   ├── DangKyActivity.java           # Màn hình đăng ký tài khoản
-│   ├── HomeActivity.java             # Màn hình trang chủ chính (Streak, Môn học, Nhật ký)
-│   ├── DanhSachMonHocActivity.java   # Màn hình danh sách môn học dạng lưới (Grid)
-│   ├── TaoDanYActivity.java          # Màn hình chọn file & gửi tài liệu cho AI phân tích
-│   ├── DanYActivity.java             # Màn hình hiển thị dàn ý học tập dạng cây AI
-│   ├── LichHocActivity.java          # Màn hình theo dõi lịch học theo tháng
-│   ├── HoSoActivity.java             # Màn hình quản lý thông tin cá nhân
-│   ├── TaoLichActivity.java          # Màn hình lên lịch học mới
-│   └── TaoWorkspaceActivity.java     # Màn hình tạo không gian học tập mới
-├── adapters/              # Bộ điều phối dữ liệu cho RecyclerView
-│   ├── MonHocAdapter.java            # Adapter hiển thị danh sách môn học (Lưới / Ngang)
-│   ├── nhatKyAdapter.java            # Adapter hiển thị nhật ký / hoạt động gần đây
-│   ├── OutlineTreeAdapter.java       # Adapter phân cấp cây dàn ý AI (Tree structure)
-│   ├── LichThangAdapter.java         # Adapter tạo ma trận lịch tháng 7xN
-│   ├── DailyTaskAdapter.java         # Adapter danh sách công việc theo ngày
-│   ├── ActivityFeedAdapter.java      # Adapter dòng thời gian hoạt động
-│   └── OnItemClickListener.java     # Interface bắt sự kiện click item chung
-├── models/                # Các lớp đối tượng dữ liệu (DTOs & Entities)
-│   ├── User.java                     # Thông tin người dùng
-│   ├── Subject.java                  # Thông tin môn học / workspace
-│   ├── DanY.java                     # Thông tin từng mục dàn ý bài học AI
-│   ├── HomeData.java                 # Cụm dữ liệu tổng hợp trang chủ (Streak, Subjects, RecentActivities)
-│   ├── HomeResponse.java             # Response bọc ngoài dữ liệu trang chủ
-│   ├── TaoSubjectRequest.java        # Body request tạo môn học
-│   ├── TaoSubjectData.java           # Response chứa ID môn học vừa tạo
-│   ├── LoaiNhatKy.java               # Enum/Phân loại nhật ký
-│   ├── MonHocItem.java               # Dữ liệu hiển thị môn học
-│   └── NhatKyItem.java               # Dữ liệu hiển thị nhật ký
-├── network/               # Tầng kết nối RESTful API
-│   ├── RetrofitClient.java           # Singleton khởi tạo Retrofit kết nối Backend Node.js
-│   ├── ApiService.java               # Định nghĩa các Endpoints HTTP (GET, POST, PATCH, Multipart)
-│   └── ApiResponse.java              # Generic Response Wrapper (`success`, `data`, `message`)
-└── util/                  # Các lớp tiện ích hỗ trợ
-    ├── Constants.java                # Quản lý hằng số hệ thống (Max file size, Intent Keys, ...)
-    ├── FileUtils.java                # Đọc tên, dung lượng, MIME type từ Uri
-    ├── UriRequestBody.java           # RequestBody tùy biến truyền Stream trực tiếp cho OkHttp
-    ├── ApiErrorParser.java           # Bóc tách câu báo lỗi từ Error Response Body
-    ├── DateUtils.java                # Tiện ích xử lý định dạng ngày tháng
-    ├── TokenManager.java             # Quản lý SharedPreferences lưu Token
-    └── OutlineTreeBuilder.java       # Xây dựng cấu trúc cây dàn ý
-```
+| Chức năng / Màn hình | Giao diện (XML) | Xử lý (Java) | Kết nối API | Trạng thái |
+| :-- | :-: | :-: | :-: | :-- |
+| Chào mừng (`WelcomeActivity`) | ✅ | ✅ | – | ⚠️ Chưa khai báo trong Manifest |
+| Đăng nhập (`DangNhapActivity`) | ✅ | ❌ | ❌ | 🟡 Mới có giao diện |
+| Đăng ký (`DangKyActivity`) | ✅ | ❌ | ❌ | 🟡 Mới có giao diện |
+| Trang chủ (`HomeActivity`) | ✅ | ✅ | ✅ | ✅ Hoàn thành |
+| Danh sách môn học (`DanhSachMonHocActivity`) | ✅ | ✅ | ✅ | ✅ Hoàn thành (còn thiếu click mở môn) |
+| Tạo dàn ý AI (`TaoDanYActivity`) | ✅ | ✅ | ✅ | ✅ Hoàn thành |
+| Xem dàn ý (`DanYActivity`) | ✅ | ✅ | 🟡 | 🟡 Nút "Lên lịch" đang giả lập |
+| Lịch học (`LichHocActivity`) | ✅ | 🟡 | ❌ | 🟡 Mới có lưới lịch tháng |
+| Tạo lịch (`TaoLichActivity`) | ❌ | ❌ | ❌ | ❌ Chưa làm |
+| Tạo môn học / workspace (`TaoWorkspaceActivity`) | ❌ | ❌ | ❌ | ❌ Chưa làm |
+| Hồ sơ cá nhân (`HoSoActivity`) | ❌ | ❌ | ❌ | ❌ Chưa làm |
+
+**Chú thích:** ✅ Đã xong · 🟡 Làm một phần · ❌ Chưa làm · – Không áp dụng
 
 ---
 
-## 📱 3. Chi Tiết Màn Hình & Chức Năng Đã Hoàn Thành
+## ✅ 2. Những phần ĐÃ HOÀN THÀNH
 
-### 1️⃣ Màn hình Chào mừng (`WelcomeActivity` & `welcomeactivity.xml`)
-- Kiếm tra trạng thái Token đăng nhập lưu trong `SharedPreferences` (`ZenTaskPrefs`).
-- Nút **"Bắt đầu ngay"**: Tự động chuyển thẳng tới `HomeActivity` nếu đã đăng nhập, ngược lại điều hướng sang `DangKyActivity`.
-- Nút **"Đăng nhập"**: Điều hướng tới `DangNhapActivity`.
+### 2.1. Nền tảng dự án
+- Cấu hình Gradle (Version Catalog), Retrofit, Gson, Material Components.
+- Tổ chức mã nguồn theo gói: `activities`, `adapters`, `models`, `network`, `util`.
+- Quyền `INTERNET` trong `AndroidManifest.xml`.
 
-### 2️⃣ Màn hình Trang Chủ (`HomeActivity` & `homeactivity.xml`)
-- **Hiển thị Streak:** Lấy dữ liệu số ngày học liên tục 🔥 từ Backend.
-- **Danh sách Môn học (Cuộn ngang):** Dùng `RecyclerView` kết hợp `MonHocAdapter` hiển thị phần trăm tiến độ hoàn thành bài học.
-- **Nhật ký hoạt động (Cuộn dọc):** Hiển thị danh sách các bài học / dàn ý vừa hoàn thành gần đây.
-- **Tích hợp API (`GET /home`):** Tự động gửi Bearer Token đính kèm Header để tải dữ liệu trang chủ.
+### 2.2. Giao diện (res/)
+- Hoàn thiện layout: chào mừng, đăng nhập, đăng ký, trang chủ, danh sách môn học, tạo dàn ý, xem dàn ý, lịch học.
+- Thanh điều hướng dưới dùng chung (`thanhdieuhuong.xml`, nhúng bằng `<include>`).
+- Layout item: `item_monhoc`, `item_nhatky`, `item_dan_y`, `item_lich`, `item_daily_task`.
+- Bộ drawable (nền gradient, nút bo tròn, chip, badge, icon), color selector cho ô nhập liệu, theme sáng/tối.
 
-### 3️⃣ Màn hình Danh Sách Môn Học (`DanhSachMonHocActivity` & `danhsachmonhocactivity.xml`)
-- Hiển thị toàn bộ môn học dưới dạng **Lưới 2 cột (`GridLayoutManager`)**.
-- Nút Quay lại (`btn_back`) và Nút Tạo thêm môn học (`btn_them_monhoc`) điều hướng tới `TaoWorkspaceActivity`.
+### 2.3. Màn hình Chào mừng – `WelcomeActivity`
+- Kiểm tra token trong `SharedPreferences` (`ZenTaskPrefs`).
+- "Bắt đầu ngay": đã đăng nhập → Trang chủ, chưa đăng nhập → Đăng ký.
+- "Đăng nhập": chuyển sang `DangNhapActivity`.
 
-### 4️⃣ Màn hình Tạo Dàn Ý AI (`TaoDanYActivity` & `taodanyactivity.xml`)
-- **Chọn Loại Mẫu:** 4 dạng mẫu học tập (Đề án, Ôn thi, Báo cáo, Tự do) thiết kế dạng Chips tương tác đổi màu sắc.
-- **Chọn Tệp Tài Liệu:** Tích hợp `ActivityResultLauncher` mở tệp PDF, JPG, PNG với giới hạn dung lượng 20MB (`Constants.MAX_FILE_BYTES`).
-- **Tùy biến Upload Stream (`UriRequestBody`):** Tối ưu hóa bộ nhớ RAM khi upload tệp lớn trực tiếp qua `ContentResolver`.
-- **Gọi API 2 Bước:**
-  1. Gọi `POST /subject/create` để tạo mới môn học và nhận về `idSubject`.
-  2. Gọi `POST /input/process` (Multipart Upload) truyền `idSubject` và `file` tài liệu cho AI xử lý tách dàn ý.
-- **Quản lý Trạng Thái:** Hiển thị mượt mà hiệu ứng Đang xử lý, khóa nút thao tác, tự động chặn Back khi AI đang phân tích.
+### 2.4. Trang chủ – `HomeActivity`
+- Gọi API `GET api/home` kèm Bearer Token.
+- Hiển thị streak 🔥, danh sách môn học cuộn ngang (`MonHocAdapter`), nhật ký gần đây cuộn dọc (`nhatKyAdapter`).
+- Bấm vào môn học: có dàn ý → mở `DanYActivity`, chưa có → gợi ý sang `TaoDanYActivity`.
+- "Xem tất cả" → `DanhSachMonHocActivity`; thanh điều hướng dưới hoạt động.
+- Báo lỗi khi chưa đăng nhập, lỗi server hoặc mất mạng.
 
-### 5️⃣ Màn hình Xem Dàn Ý Cây AI (`DanYActivity` & `danyactivity.xml`)
-- Nhận dữ liệu JSON danh sách dàn ý phân cấp qua `Intent`.
-- **Hiển thị Cây Học Tập (`OutlineTreeAdapter`):**
-  - Tự động tính toán độ sâu của từng mục (`doSau`) dựa trên quan hệ `ParentId`.
-  - Tự động thụt lề theo cấp độ (16dp mỗi cấp).
-  - Phân biệt định dạng tiêu đề mục gốc (In đậm) và mục con.
-  - Tự động gắn nhãn cảnh báo **"Cần thêm tài liệu"** nếu độ tin cậy AI (`DoTinCay`) < 0.6.
+### 2.5. Danh sách môn học – `DanhSachMonHocActivity`
+- Hiển thị toàn bộ môn học dạng lưới 2 cột, lấy dữ liệu từ API `api/home`.
+- Nút quay lại.
 
-### 6️⃣ Màn hình Lịch Học (`LichHocActivity` & `lichhocactivity.xml`)
-- **Thuật toán Tạo Lưới Tháng (`LichThangAdapter`):** Tự động tính toán số ngày đệm tháng trước/tháng sau theo chuẩn ISO-8601 (Thứ 2 đến Chủ nhật).
-- Cho phép chọn ngày linh hoạt và đổi giao diện làm nổi bật ngày được chọn.
+### 2.6. Tạo dàn ý AI – `TaoDanYActivity`
+- Chọn 4 loại mẫu (Đề án, Ôn thi, Báo cáo, Tự do) dạng chip.
+- Nhập tên môn học (kiểm tra rỗng, tối đa 100 ký tự).
+- Chọn tệp PDF/JPG/PNG, kiểm tra định dạng và giới hạn 20MB (`FileUtils`, `Constants`).
+- Upload dạng stream để tiết kiệm bộ nhớ (`UriRequestBody`).
+- Luồng 2 bước: `POST subject/create` → `POST input/process` (multipart).
+- Khi thử lại sau lỗi thì dùng lại môn học đã tạo, không tạo thêm môn rỗng.
+- Hiển thị trạng thái đang xử lý, chặn bấm đúp và chặn nút Back khi AI đang chạy.
+- Xử lý lỗi: 401 → về đăng nhập, timeout, mất kết nối, đọc thông báo lỗi từ server (`ApiErrorParser`).
 
----
+### 2.7. Xem dàn ý – `DanYActivity`
+- Nhận danh sách dàn ý (JSON) qua Intent và hiển thị dạng cây (`OutlineTreeAdapter`): tính độ sâu theo `ParentId`, thụt lề 16dp mỗi cấp, in đậm mục gốc.
+- Gắn nhãn **"Cần thêm tài liệu"** khi độ tin cậy AI < 0.6.
+- Bấm vào mục → hộp thoại hiển thị nội dung chi tiết và độ tin cậy.
 
-## 🌐 4. Tầng Mạng & Tích Hợp API (`network/`)
+### 2.8. Lịch học – `LichHocActivity` (phần giao diện lịch)
+- Tạo lưới lịch tháng 7 cột bắt đầu từ Thứ 2, có ngày đệm tháng trước/sau (`LichThangAdapter`).
+- Làm nổi bật ngày đang chọn, hiển thị tiêu đề tháng và tiêu đề "Hôm nay"/"Ngày mai".
 
-### Cấu hình RetrofitClient
-- **Base URL:** `http://10.0.2.2:3000/` (Địa chỉ IP Loopback tới Localhost Backend Node.js từ Android Emulator).
-- **Converter:** `GsonConverterFactory`.
+### 2.9. Tầng mạng – `network/`
+- `RetrofitClient` (singleton), `ApiResponse<T>` dùng chung.
+- Đã khai báo các endpoint:
 
-### Danh sách API Endpoints (`ApiService.java`):
-| HTTP Method | Endpoint Path | Mô tả Chức năng |
-| :--- | :--- | :--- |
-| `GET` | `home` | Lấy dữ liệu tổng quan trang chủ (Streak, Danh sách môn học, Nhật ký gần đây) |
-| `POST` | `subject/create` | Khởi tạo một môn học / chủ đề mới |
-| `POST` | `input/process` | Upload tệp tài liệu (Multipart) + ID môn học để AI phân tích và tạo dàn ý |
-| `POST` | `lichhoc/{idSubject}` | Lên lịch học tự động cho môn học |
-| `GET` | `lichhoc/{ngay}` | Xem danh sách bài học cần hoàn thành theo ngày |
-| `PATCH` | `lichhoc/{idDanY}/hoanthanh` | Cập nhật trạng thái đánh dấu hoàn thành một mục dàn ý |
-
----
-
-## 🎨 5. Thiết Kế Giao Diện & Tài Nguyên (`res/`)
-
-- **Giao diện Hiện đại:** Thiết kế theo phong cách hiện đại với dải màu Gradient (`bg_gradient.xml`), các nút bấm Bo tròn chuẩn Material Design (`btn_primary.xml`).
-- **Thanh Điều Hướng Chung (`thanhdieuhuong.xml`):** Tích hợp dưới dạng `<include>` để tái sử dụng thống nhất trên tất cả các màn hình chính.
-- **Biểu tượng & Badges:** Tích hợp các huy hiệu "AI GENERATED", nhãn trạng thái tiến độ bài học.
+| Method | Endpoint | Mô tả | Đã dùng trong app |
+| :-- | :-- | :-- | :-: |
+| `GET` | `api/home` | Dữ liệu trang chủ | ✅ |
+| `POST` | `subject/create` | Tạo môn học | ✅ |
+| `POST` | `input/process` | Upload tài liệu cho AI tạo dàn ý | ✅ |
+| `POST` | `lichhoc/{idSubject}` | Tự động xếp lịch học | 🟡 (kết quả chưa được xử lý) |
+| `GET` | `lichhoc/{ngay}` | Xem bài học theo ngày | ❌ |
+| `PATCH` | `lichhoc/{idDanY}/hoanthanh` | Đánh dấu hoàn thành | ❌ |
 
 ---
 
-## ✅ 6. Kết Luận
-Tất cả các thành phần giao diện, luồng dữ liệu, thuật toán xử lý cây dàn ý AI, ma trận lịch tháng và tầng kết nối RESTful API của dự án **ZenTask** đã được xây dựng hoàn chỉnh, chạy thành công và sẵn sàng phục vụ kiểm thử end-to-end với Backend server.
+## ⏳ 3. Những phần CHƯA HOÀN THÀNH
+
+### 3.1. Xác thực người dùng (ưu tiên cao)
+- [ ] `DangNhapActivity` mới chỉ gắn layout, chưa xử lý nhập liệu, chưa gọi API, chưa lưu token.
+- [ ] `DangKyActivity` là lớp rỗng (chưa có `onCreate`, chưa gắn layout `dangky.xml`).
+- [ ] API `auth/login`, `auth/register` còn đang comment trong `ApiService`; chưa có model `LoginRequest`/`LoginResponse`.
+- [ ] Chưa có chức năng đăng xuất.
+- ⚠️ Hiện tại app **không thể có token** qua giao diện, nên các màn hình gọi API đều báo "Chưa đăng nhập".
+
+### 3.2. Các màn hình chưa làm
+- [ ] `HoSoActivity` – lớp rỗng, `hoso.xml` chưa có nội dung.
+- [ ] `TaoWorkspaceActivity` – lớp rỗng, chưa có layout.
+- [ ] `TaoLichActivity` – lớp rỗng, chưa có layout.
+
+### 3.3. Lịch học
+- [ ] Chưa gọi `GET lichhoc/{ngay}` để lấy bài học theo ngày.
+- [ ] `rv_viec_hom_nay`, `rv_viec_ngay_mai` chưa có dữ liệu; `tv_han_nop` chưa được gán.
+- [ ] Chọn ngày mới chỉ hiện Toast, chưa tải danh sách công việc của ngày đó.
+- [ ] Chưa chuyển tháng trước/tháng sau.
+- [ ] Chưa đánh dấu hoàn thành bài học (`PATCH lichhoc/{idDanY}/hoanthanh`).
+
+### 3.4. Xem dàn ý & tạo lịch
+- [ ] Nút "Lên lịch" trong `DanYActivity` luôn chuyển sang màn Lịch học kể cả khi API lỗi (đang giả lập), chưa đọc kết quả trả về.
+- [ ] Chưa cho phép chỉnh sửa / xóa / thêm mục dàn ý.
+- [ ] Trang chủ lấy dàn ý của môn từ danh sách "nhật ký gần đây" nên có thể thiếu mục; cần API lấy toàn bộ dàn ý theo môn.
+- [ ] `DanhSachMonHocActivity`: bấm vào môn mới chỉ hiện Toast; đang dùng lại API `api/home` thay vì API danh sách môn riêng.
+
+### 3.5. Lớp tiện ích / adapter còn trống
+- [ ] `TokenManager` – chưa có code (token đang đọc trực tiếp từ `SharedPreferences` ở nhiều nơi).
+- [ ] `DateUtils`, `OutlineTreeBuilder` – lớp rỗng.
+- [ ] `DailyTaskAdapter`, `ActivityFeedAdapter` – lớp rỗng (dù đã có `item_daily_task.xml`).
+- [ ] `MonHocItem`, `NhatKyItem` chưa được sử dụng.
+- [ ] `ZenTaskApplication` chưa khai báo trong Manifest.
+
+### 3.6. Cấu hình & lỗi cần sửa
+- [ ] **Manifest:** màn hình khởi động (LAUNCHER) đang là `LichHocActivity` → cần đổi về `WelcomeActivity`.
+- [ ] **Manifest:** chưa khai báo `WelcomeActivity`, `HoSoActivity`, `TaoWorkspaceActivity`, `TaoLichActivity` → bấm tab "Thông tin" hoặc nút "Thêm môn học" sẽ **crash** (`ActivityNotFoundException`).
+- [ ] Đường dẫn API chưa thống nhất: `api/home` có tiền tố `api/`, các endpoint khác thì không → cần đối chiếu với backend.
+- [ ] Chưa cấu hình timeout cho OkHttp (AI xử lý 1–2 phút có thể vượt timeout mặc định 10 giây).
+- [ ] Gọi HTTP (không HTTPS) tới `10.0.2.2` cần bật `usesCleartextTraffic` hoặc `network_security_config`.
+- [ ] `BASE_URL` đang viết cứng, chỉ dùng được trên Emulator.
+
+### 3.7. Kiểm thử
+- [ ] Mới có test mẫu (`ExampleUnitTest`, `ExampleInstrumentedTest`), chưa có test cho chức năng.
+- [ ] Chưa kiểm thử end-to-end với backend.
+
+---
+
+## 🎯 4. Đề xuất thứ tự thực hiện tiếp theo
+
+1. Sửa `AndroidManifest.xml` (LAUNCHER, khai báo đủ Activity, cleartext) để app chạy không crash.
+2. Hoàn thiện Đăng nhập / Đăng ký + `TokenManager`.
+3. Hoàn thiện Lịch học: lấy công việc theo ngày (`DailyTaskAdapter`), đánh dấu hoàn thành, chuyển tháng.
+4. Làm `TaoWorkspaceActivity`, `HoSoActivity`, `TaoLichActivity`.
+5. Thống nhất endpoint với backend, cấu hình timeout, kiểm thử end-to-end.

@@ -17,13 +17,9 @@ import java.util.List;
 public class MonHocAdapter extends RecyclerView.Adapter<MonHocAdapter.MonHocViewHolder> {
 
     private final List<Subject> items;
-    private final OnItemClickListener onClick;
+    private final OnItemClickListener<Subject> onClick;
 
-    public interface OnItemClickListener {
-        void onItemClick(Subject item);
-    }
-
-    public MonHocAdapter(List<Subject> items, OnItemClickListener onClick) {
+    public MonHocAdapter(List<Subject> items, OnItemClickListener<Subject> onClick) {
         this.items = items;
         this.onClick = onClick;
     }
@@ -58,7 +54,7 @@ public class MonHocAdapter extends RecyclerView.Adapter<MonHocAdapter.MonHocView
             pbTienDo = itemView.findViewById(R.id.pb_tiendo);
         }
 
-        void bind(Subject item, OnItemClickListener onClick) {
+        void bind(Subject item, OnItemClickListener<Subject> onClick) {
             tvBadgeAi.setVisibility(View.GONE);
             tvTenMonHoc.setText(item.getTen());
 
@@ -70,7 +66,11 @@ public class MonHocAdapter extends RecyclerView.Adapter<MonHocAdapter.MonHocView
             tvTienDo.setText(String.format("Tiến độ: %d%%", phanTram));
             pbTienDo.setProgress(phanTram);
 
-            itemView.setOnClickListener(v -> onClick.onItemClick(item));
+            itemView.setOnClickListener(v -> {
+                if (onClick != null) {
+                    onClick.onItemClick(item);
+                }
+            });
         }
     }
 }

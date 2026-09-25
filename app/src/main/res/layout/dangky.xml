@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient">
 
-    <!-- Circle Gradient -->
+    <!-- Circle Gradient Background Effects -->
     <View
         android:layout_width="240dp"
         android:layout_height="240dp"
@@ -31,9 +31,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingHorizontal="24dp"
-        tools:context=".activities.WelcomeActivity">
+        tools:context=".activities.DangKyActivity">
 
-        <!-- Icon chữ Z + ZenTask -->
+        <!-- Icon Logo + ZenTask Title -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,12 +41,12 @@
             android:gravity="center_horizontal|center_vertical"
             android:layout_marginTop="40dp">
 
-            <TextView
-                android:id="@+id/tv_logo_icon"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@mipmap/ic_logo_app"
-                android:gravity="center" />
+            <ImageView
+                android:id="@+id/img_logo_icon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/ic_logo_app" />
 
             <TextView
                 android:id="@+id/tv_logo_text"
@@ -56,7 +56,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="ZenTask"
                 android:textColor="#2D1B3D"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:text="Tạo Tài Khoản"
             android:textColor="#1F1235"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:textSize="25sp"
             android:textStyle="bold"
             android:textAlignment="center" />
@@ -78,7 +78,7 @@
             android:text="Đăng ký để bắt đầu học hiệu quả"
             android:textColor="#8A8A8A"
             android:textSize="14sp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:textAlignment="center"/>
 
         <!-- Email -->
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="24dp">
 
             <TextView
                 android:id="@+id/tvEmailLabel"
@@ -96,10 +96,10 @@
                 android:textColor="#2D1B4E"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="6dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tivEmail"
+                android:id="@+id/tilEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="nhapemail@viethoc.com"
+                    android:hint="Nhập email"
                     android:inputType="textEmailAddress"
                     android:textColor="#2D1B4E"
                     android:textColorHint="#B7B3C2"
@@ -133,17 +133,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/tvTen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tên hiển thị "
+                android:text="Tên hiển thị"
                 android:textColor="#2D1B4E"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="6dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilTen"
@@ -164,7 +164,7 @@
                     android:id="@+id/edtTen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="nhập vào tên hiển thị"
+                    android:hint="Nhập vào tên hiển thị"
                     android:textColor="#2D1B4E"
                     android:textColorHint="#B7B3C2"
                     android:textSize="14sp"
@@ -179,7 +179,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/tvMatKhau"
@@ -189,7 +189,7 @@
                 android:textColor="#2D1B4E"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="6dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilMatKhau"
@@ -212,7 +212,7 @@
                     android:id="@+id/edtMatKhau"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="nhập mật khẩu"
+                    android:hint="Nhập mật khẩu"
                     android:inputType="textPassword"
                     android:textColor="#2D1B4E"
                     android:textColorHint="#B7B3C2"
@@ -228,7 +228,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/tvXacNhanMatKhau"
@@ -238,7 +238,7 @@
                 android:textColor="#2D1B4E"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="6dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilXacNhanMatKhau"
@@ -253,16 +253,15 @@
                 app:boxStrokeWidth="1.5dp"
                 app:boxStrokeColor="@color/box_stroke_selector"
                 app:startIconDrawable="@drawable/ic_password"
-                app:endIconMode="password_toggle"
                 app:startIconTint="#9A94A8"
-
+                app:endIconMode="password_toggle"
                 app:endIconTint="#9A94A8">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtXacNhanMatKhau"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="nhập lại mật khẩu"
+                    android:hint="Nhập lại mật khẩu"
                     android:inputType="textPassword"
                     android:textColor="#2D1B4E"
                     android:textColorHint="#B7B3C2"
@@ -277,11 +276,15 @@
         <Button
             android:id="@+id/btnDangKy"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="13dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_primary"
+            app:backgroundTint="@null"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
             android:text="Đăng ký"
             android:textAllCaps="false"
-            android:textColor="#DED3D3"
+            android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold"
             android:stateListAnimator="@null"
@@ -295,6 +298,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
             android:text="Đã có tài khoản? Đăng nhập"
             android:textColor="#0D0C0C"
             android:textSize="14sp"

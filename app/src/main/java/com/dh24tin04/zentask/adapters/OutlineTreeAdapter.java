@@ -21,23 +21,22 @@ import java.util.Map;
 
 public class OutlineTreeAdapter extends RecyclerView.Adapter<OutlineTreeAdapter.VH> {
 
-    // DoTinCay (0–1) do AI trả về; thấp hơn ngưỡng này thì gắn nhãn "Cần thêm tài liệu"
     private static final double NGUONG_DO_TIN_CAY = 0.6;
-    private static final int THUT_LE_DP = 16;    // mỗi cấp thụt thêm 16dp
-    private static final int DO_SAU_TOI_DA = 5;  // tránh thụt quá sâu làm hẹp tiêu đề
+    private static final int THUT_LE_DP = 16;
+    private static final int DO_SAU_TOI_DA = 5;
 
     private final List<DanY> ds;
-    private final int[] doSau;      // doSau[i] = độ sâu của ds.get(i), gốc = 0
+    private final int[] doSau;
     private final String tenMon;
+    private final OnItemClickListener<DanY> onItemClickListener;
 
-    public OutlineTreeAdapter(List<DanY> danhSach, String tenMon) {
+    public OutlineTreeAdapter(List<DanY> danhSach, String tenMon, OnItemClickListener<DanY> onItemClickListener) {
         this.tenMon = tenMon == null ? "" : tenMon;
+        this.onItemClickListener = onItemClickListener;
 
-        // Sắp theo IdDanY: server lưu tuần tự đúng thứ tự AI trả về (cha luôn được lưu trước con),
         this.ds = new ArrayList<>(danhSach);
-        Collections.sort(this.ds, (a, b) -> Integer.compare(a.getIdDanY(), b.getIdDanY()));
+        Collections.sort(this.ds, (a, b) -> Integer.compare(a.getThuTu(), b.getThuTu()));
 
-        // Độ sâu = độ sâu của cha + 1 (dựa vào ParentId thật, không dựa CapDo thô
         this.doSau = new int[this.ds.size()];
         Map<Integer, Integer> doSauTheoId = new HashMap<>();
         for (int i = 0; i < this.ds.size(); i++) {
@@ -50,6 +49,10 @@ public class OutlineTreeAdapter extends RecyclerView.Adapter<OutlineTreeAdapter.
             doSau[i] = sau;
             doSauTheoId.put(d.getIdDanY(), sau);
         }
+    }
+
+    public OutlineTreeAdapter(List<DanY> danhSach, String tenMon) {
+        this(danhSach, tenMon, null);
     }
 
     @NonNull
@@ -65,7 +68,6 @@ public class OutlineTreeAdapter extends RecyclerView.Adapter<OutlineTreeAdapter.
         DanY d = ds.get(position);
         int sau = doSau[position];
 
-        // Tiêu đề + icon: mục gốc đậm, mục con thường
         h.tvTieuDe.setText(d.getTieuDe());
         h.tvTieuDe.setTypeface(null, sau == 0 ? Typeface.BOLD : Typeface.NORMAL);
         h.tvIcon.setText(sau == 0 ? "☰" : "•");
@@ -79,6 +81,12 @@ public class OutlineTreeAdapter extends RecyclerView.Adapter<OutlineTreeAdapter.
         h.tvBadge.setText(canThemTaiLieu ? "Cần thêm tài liệu" : tenMon);
         h.tvBadge.setTextColor(Color.parseColor(canThemTaiLieu ? "#B08900" : "#63587B"));
         h.tvBadge.setVisibility(!canThemTaiLieu && tenMon.isEmpty() ? View.GONE : View.VISIBLE);
+
+        h.itemView.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(d);
+            }
+        });
     }
 
     @Override

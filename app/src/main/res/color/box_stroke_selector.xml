@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Khi người dùng đang trỏ / focus vào ô nhập -->
+    <item android:state_focused="true" android:color="#7B3FA0" />
+
+    <!-- Khi hover hoặc di chuột vào -->
+    <item android:state_hovered="true" android:color="#9A94A8" />
+
+    <!-- Trạng thái bình thường / mặc định: màu xám nhạt -->
+    <item android:color="#E5DEF0" />
+</selector>
