@@ -1,8 +1,6 @@
 package com.dh24tin04.zentask.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +19,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+
+import com.dh24tin04.zentask.network.ApiResponse;
+import com.dh24tin04.zentask.util.ApiErrorParser;
+import com.dh24tin04.zentask.util.ThanhDieuHuong;
+import java.io.IOException;
+import java.net.SocketTimeoutException;
 
 public class LichHocActivity extends AppCompatActivity {
 
@@ -43,7 +47,7 @@ public class LichHocActivity extends AppCompatActivity {
 
         addview();
         caiDatLichThang();
-        caiDatThanhDieuHuong();
+        ThanhDieuHuong.caiDat(this, ThanhDieuHuong.TAB_LICH_HOC);
     }
 
     private void addview() {
@@ -89,35 +93,4 @@ public class LichHocActivity extends AppCompatActivity {
         tvThangNam.setText("Tháng " + date.getMonthValue() + ", " + date.getYear());
     }
 
-    private void caiDatThanhDieuHuong() {
-        View tabTongQuan = findViewById(R.id.tab_tongquan);
-        View tabNapLieu = findViewById(R.id.tab_naplieu);
-        View tabDanY = findViewById(R.id.tab_dany);
-        View tabThongTin = findViewById(R.id.tab_thongtin);
-
-        if (tabTongQuan != null) {
-            tabTongQuan.setOnClickListener(v -> {
-                startActivity(new Intent(this, HomeActivity.class));
-                finish();
-            });
-        }
-        if (tabNapLieu != null) {
-            tabNapLieu.setOnClickListener(v -> {
-                startActivity(new Intent(this, TaoDanYActivity.class));
-                finish();
-            });
-        }
-        if (tabDanY != null) {
-            tabDanY.setOnClickListener(v -> {
-                startActivity(new Intent(this, DanhSachMonHocActivity.class));
-                finish();
-            });
-        }
-        if (tabThongTin != null) {
-            tabThongTin.setOnClickListener(v -> {
-                startActivity(new Intent(this, HoSoActivity.class));
-                finish();
-            });
-        }
-    }
 }

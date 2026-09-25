@@ -124,7 +124,7 @@
 
 ### 3.6. Cấu hình & lỗi cần sửa
 - [ ] **Manifest:** màn hình khởi động (LAUNCHER) đang là `LichHocActivity` → cần đổi về `WelcomeActivity`.
-- [ ] **Manifest:** chưa khai báo `WelcomeActivity`, `HoSoActivity`, `TaoWorkspaceActivity`, `TaoLichActivity` → bấm tab "Thông tin" hoặc nút "Thêm môn học" sẽ **crash** (`ActivityNotFoundException`).
+- [ ] **Manifest:** chưa khai báo `WelcomeActivity`, `HoSoActivity`, `TaoWorkspaceActivity`, `TaoLichActivity` → bấm tab "Thông tin" sẽ **crash** (`ActivityNotFoundException`).
 - [ ] Đường dẫn API chưa thống nhất: `api/home` có tiền tố `api/`, các endpoint khác thì không → cần đối chiếu với backend.
 - [ ] Chưa cấu hình timeout cho OkHttp (AI xử lý 1–2 phút có thể vượt timeout mặc định 10 giây).
 - [ ] Gọi HTTP (không HTTPS) tới `10.0.2.2` cần bật `usesCleartextTraffic` hoặc `network_security_config`.

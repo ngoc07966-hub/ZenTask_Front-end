@@ -24,6 +24,7 @@ import com.dh24tin04.zentask.network.RetrofitClient;
 import com.dh24tin04.zentask.util.ApiErrorParser;
 import com.dh24tin04.zentask.util.Constants;
 import com.dh24tin04.zentask.util.FileUtils;
+import com.dh24tin04.zentask.util.ThanhDieuHuong;
 import com.dh24tin04.zentask.util.UriRequestBody;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
@@ -78,6 +79,7 @@ public class TaoDanYActivity extends AppCompatActivity {
         addview();
         addevent();
         chonLoaiMau(loaiMau);
+        ThanhDieuHuong.caiDat(this, ThanhDieuHuong.TAB_NAP_LIEU);
 
         // Đang gọi API thì không cho thoát màn hình
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {

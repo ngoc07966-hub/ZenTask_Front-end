@@ -2,7 +2,6 @@ package com.dh24tin04.zentask.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +20,7 @@ import com.dh24tin04.zentask.models.Subject;
 import com.dh24tin04.zentask.network.ApiService;
 import com.dh24tin04.zentask.network.RetrofitClient;
 import com.dh24tin04.zentask.util.Constants;
+import com.dh24tin04.zentask.util.ThanhDieuHuong;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         addview();
         addevent();
         caiDatRecyclerView();
-        caiDatThanhDieuHuong();
+        ThanhDieuHuong.caiDat(this, ThanhDieuHuong.TAB_TONG_QUAN);
         ApiLayDuLieuHome();
     }
 
@@ -104,26 +104,6 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(HomeActivity.this, DanhSachMonHocActivity.class);
             startActivity(intent);
         });
-    }
-
-    private void caiDatThanhDieuHuong() {
-        View tabNapLieu = findViewById(R.id.tab_naplieu);
-        View tabDanY = findViewById(R.id.tab_dany);
-        View tabLichHoc = findViewById(R.id.tab_lichhoc);
-        View tabThongTin = findViewById(R.id.tab_thongtin);
-
-        if (tabNapLieu != null) {
-            tabNapLieu.setOnClickListener(v -> startActivity(new Intent(this, TaoDanYActivity.class)));
-        }
-        if (tabDanY != null) {
-            tabDanY.setOnClickListener(v -> startActivity(new Intent(this, DanhSachMonHocActivity.class)));
-        }
-        if (tabLichHoc != null) {
-            tabLichHoc.setOnClickListener(v -> startActivity(new Intent(this, LichHocActivity.class)));
-        }
-        if (tabThongTin != null) {
-            tabThongTin.setOnClickListener(v -> startActivity(new Intent(this, HoSoActivity.class)));
-        }
     }
 
     private void ApiLayDuLieuHome() {

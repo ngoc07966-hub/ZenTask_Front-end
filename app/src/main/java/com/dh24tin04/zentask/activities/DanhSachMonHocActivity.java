@@ -17,6 +17,7 @@ import com.dh24tin04.zentask.models.HomeResponse;
 import com.dh24tin04.zentask.models.Subject;
 import com.dh24tin04.zentask.network.ApiService;
 import com.dh24tin04.zentask.network.RetrofitClient;
+import com.dh24tin04.zentask.util.ThanhDieuHuong;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class DanhSachMonHocActivity extends AppCompatActivity {
         addview();
         addevent();
         caiDatRecyclerView();
+        ThanhDieuHuong.caiDat(this, ThanhDieuHuong.TAB_DAN_Y);
         ApiLayDanhSachMonHoc();
     }
 
@@ -51,7 +53,7 @@ public class DanhSachMonHocActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
 
         btnThemMonHoc.setOnClickListener(v -> {
-            Intent intent = new Intent(DanhSachMonHocActivity.this, TaoWorkspaceActivity.class);
+            Intent intent = new Intent(DanhSachMonHocActivity.this, TaoDanYActivity.class);
             startActivity(intent);
         });
     }

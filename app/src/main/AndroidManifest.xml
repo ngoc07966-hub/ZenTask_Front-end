@@ -19,7 +19,7 @@
         <activity android:name=".activities.TaoDanYActivity" android:exported="false" />
         <activity android:name=".activities.DanYActivity" android:exported="false"/>
         <activity
-            android:name=".activities.LichHocActivity"
+            android:name=".activities.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
