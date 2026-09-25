@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZenTask">
         <activity android:name=".activities.HomeActivity" android:exported="false" />
+        <activity android:name=".activities.HoSoActivity" android:exported="false"/>
         <activity android:name=".activities.DanhSachMonHocActivity" android:exported="false" />
         <activity android:name=".activities.DangKyActivity" android:exported="false" />
         <activity android:name=".activities.DangNhapActivity" android:exported="false" />
@@ -21,8 +22,7 @@
         <activity android:name=".activities.TaoLichActivity" android:exported="false" />
         <activity android:name=".activities.LichHocActivity" android:exported="false" />
         <activity
-            android:name=".activities.WelcomeActivity"
-            android:exported="true">
+            android:name=".activities.WelcomeActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

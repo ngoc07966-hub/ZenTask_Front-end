@@ -139,8 +139,6 @@ public class TaoLichActivity extends AppCompatActivity {
         }
     }
 
-    // ===== Chọn ngày =====
-
     private void moLichChonNgay() {
         Calendar macDinh = deadline != null ? deadline : homNay();
         if (deadline == null) macDinh.add(Calendar.DAY_OF_MONTH, 7);
@@ -206,7 +204,7 @@ public class TaoLichActivity extends AppCompatActivity {
                 c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH));
     }
 
-    // ===== Gọi API =====
+    // Gọi API
 
     private String layToken() {
         SharedPreferences sharedPreferences = getSharedPreferences("ZenTaskPrefs", MODE_PRIVATE);
@@ -257,8 +255,7 @@ public class TaoLichActivity extends AppCompatActivity {
                 .taoLich(layToken(), idSubject)
                 .enqueue(new Callback<ApiResponse<List<DanY>>>() {
                     @Override
-                    public void onResponse(Call<ApiResponse<List<DanY>>> call,
-                                           Response<ApiResponse<List<DanY>>> response) {
+                    public void onResponse(Call<ApiResponse<List<DanY>>> call, Response<ApiResponse<List<DanY>>> response) {
                         if (khongConSong()) return;
                         setDangXuLy(false, null);
                         ApiResponse<List<DanY>> body = response.body();

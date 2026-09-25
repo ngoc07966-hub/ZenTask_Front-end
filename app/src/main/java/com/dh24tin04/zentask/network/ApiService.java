@@ -3,6 +3,7 @@ package com.dh24tin04.zentask.network;
 import com.dh24tin04.zentask.models.CapNhatDeadlineData;
 import com.dh24tin04.zentask.models.CapNhatDeadlineRequest;
 import com.dh24tin04.zentask.models.DanY;
+import com.dh24tin04.zentask.models.HoanThanhData;
 import com.dh24tin04.zentask.models.HomeResponse;
 import com.dh24tin04.zentask.models.LichHoc;
 import com.dh24tin04.zentask.models.TaoSubjectData;
@@ -79,9 +80,9 @@ public interface ApiService {
             @Path("ngay") String ngay
     );
 
-    // -> data: 1 DanY vừa được đánh dấu hoàn thành
+    // -> data: { danY, tienDoMon: { phanTram, ... }, streak }
     @PATCH("api/lichhoc/{idDanY}/hoanthanh")
-    Call<ApiResponse<DanY>> danhDauHoanThanh(
+    Call<ApiResponse<HoanThanhData>> danhDauHoanThanh(
             @Header("Authorization") String token,
             @Path("idDanY") int idDanY
     );

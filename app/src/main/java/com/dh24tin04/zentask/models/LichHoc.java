@@ -17,6 +17,11 @@ public class LichHoc {
     @SerializedName("TrangThaiHoanThanh")
     private boolean trangThaiHoanThanh;
     public boolean isTrangThaiHoanThanh(){return trangThaiHoanThanh;}
+    public void setTrangThaiHoanThanh(boolean b){trangThaiHoanThanh = b;}
+
+    @SerializedName("NoiDung")
+    private String noiDung;
+    public String getNoiDung() {return noiDung;}
 
     @SerializedName("NgayLenLich")
     private String ngayLenLich;

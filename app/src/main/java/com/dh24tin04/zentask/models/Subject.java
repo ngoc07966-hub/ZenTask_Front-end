@@ -17,7 +17,8 @@ public class Subject {
     private String ten;
 
     // Backend DateOnly được hứng bằng String để xử lý hiển thị sau
-    @SerializedName("Deadline")
+    // Sequelize trả key theo tên thuộc tính model là "DeadLine"
+    @SerializedName(value = "Deadline", alternate = {"DeadLine"})
     private String deadline;
 
     @SerializedName("TongSoMuc")

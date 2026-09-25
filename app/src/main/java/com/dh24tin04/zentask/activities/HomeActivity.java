@@ -50,6 +50,13 @@ public class HomeActivity extends AppCompatActivity {
         ApiLayDuLieuHome();
     }
 
+    // Quay lại Trang chủ (VD sau khi tick hoàn thành ở Lịch học) -> tải lại % tiến độ và streak
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ApiLayDuLieuHome();
+    }
+
     private void addview() {
         tvStreak = findViewById(R.id.tvStreak);
         tvXemTatCa = findViewById(R.id.tvxemtatca);
