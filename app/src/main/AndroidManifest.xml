@@ -18,6 +18,8 @@
         <activity android:name=".activities.DangNhapActivity" android:exported="false" />
         <activity android:name=".activities.TaoDanYActivity" android:exported="false" />
         <activity android:name=".activities.DanYActivity" android:exported="false"/>
+        <activity android:name=".activities.TaoLichActivity" android:exported="false" />
+        <activity android:name=".activities.LichHocActivity" android:exported="false" />
         <activity
             android:name=".activities.WelcomeActivity"
             android:exported="true">

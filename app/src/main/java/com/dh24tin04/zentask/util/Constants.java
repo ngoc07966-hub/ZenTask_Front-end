@@ -6,4 +6,5 @@ public class Constants {
     public static final String EXTRA_ID_SUBJECT = "EXTRA_ID_SUBJECT";
     public static final String EXTRA_TEN_SUBJECT = "EXTRA_TEN_SUBJECT";
     public static final String EXTRA_DAN_Y_JSON = "EXTRA_DAN_Y_JSON";
+    public static final String EXTRA_SO_MUC = "EXTRA_SO_MUC"; // Số mục dàn ý, dùng cho màn Tạo lịch
 }

@@ -1,5 +1,7 @@
 package com.dh24tin04.zentask.network;
 
+import com.dh24tin04.zentask.models.CapNhatDeadlineData;
+import com.dh24tin04.zentask.models.CapNhatDeadlineRequest;
 import com.dh24tin04.zentask.models.DanY;
 import com.dh24tin04.zentask.models.HomeResponse;
 import com.dh24tin04.zentask.models.LichHoc;
@@ -41,6 +43,14 @@ public interface ApiService {
     Call<ApiResponse<TaoSubjectData>> taoSubject(
             @Header("Authorization") String token,
             @Body TaoSubjectRequest request
+    );
+
+    // Body: { deadline: "YYYY-MM-DD" } -> data: { idSubject, deadline }
+    @PATCH("api/subject/{idSubject}")
+    Call<ApiResponse<CapNhatDeadlineData>> capNhatDeadline(
+            @Header("Authorization") String token,
+            @Path("idSubject") int idSubject,
+            @Body CapNhatDeadlineRequest request
     );
 
 

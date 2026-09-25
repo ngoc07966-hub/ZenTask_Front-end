@@ -15,9 +15,6 @@ import com.dh24tin04.zentask.activities.HomeActivity;
 import com.dh24tin04.zentask.activities.LichHocActivity;
 import com.dh24tin04.zentask.activities.TaoDanYActivity;
 
-// Xử lý thanh điều hướng dưới (layout thanhdieuhuong.xml) dùng chung cho mọi màn hình.
-// Cách dùng trong Activity, sau setContentView():
-//     ThanhDieuHuong.caiDat(this, ThanhDieuHuong.TAB_LICH_HOC);
 public final class ThanhDieuHuong {
 
     public static final int TAB_TONG_QUAN = 0;
@@ -29,7 +26,7 @@ public final class ThanhDieuHuong {
     private static final String MAU_DANG_CHON = "#6C4AB6";
     private static final String MAU_CHUA_CHON = "#ADA3BD";
 
-    // Thứ tự các mảng phải khớp với các hằng TAB_... ở trên
+    // Thứ tự các mảng phải khớp với các hằng TAB
     private static final int[] ID_TAB = {
             R.id.tab_tongquan, R.id.tab_naplieu, R.id.tab_dany, R.id.tab_lichhoc, R.id.tab_thongtin};
     private static final int[] ID_PILL = {

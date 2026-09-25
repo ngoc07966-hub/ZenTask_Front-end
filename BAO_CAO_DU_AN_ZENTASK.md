@@ -1,7 +1,7 @@
 # 📋 BÁO CÁO TIẾN ĐỘ DỰ ÁN ZENTASK
 
 > Ứng dụng Android quản lý & lên lịch học tập hỗ trợ AI – `com.dh24tin04.zentask`
-> Cập nhật ngày **25/09/2026**, dựa trên mã nguồn hiện tại của nhánh `master` (commit `cab2a26`).
+> Cập nhật ngày **25/09/2026**, dựa trên mã nguồn hiện tại của nhánh `master` (sau commit `2b92937`, kèm các thay đổi làm màn Tạo lịch).
 
 ---
 
@@ -9,16 +9,16 @@
 
 | Chức năng / Màn hình | Giao diện (XML) | Xử lý (Java) | Kết nối API | Trạng thái |
 | :-- | :-: | :-: | :-: | :-- |
-| Chào mừng (`WelcomeActivity`) | ✅ | ✅ | – | ⚠️ Chưa khai báo trong Manifest |
+| Chào mừng (`WelcomeActivity`) | ✅ | ✅ | – | ✅ Hoàn thành (là màn LAUNCHER) |
 | Đăng nhập (`DangNhapActivity`) | ✅ | ❌ | ❌ | 🟡 Mới có giao diện |
 | Đăng ký (`DangKyActivity`) | ✅ | ❌ | ❌ | 🟡 Mới có giao diện |
 | Trang chủ (`HomeActivity`) | ✅ | ✅ | ✅ | ✅ Hoàn thành |
 | Danh sách môn học (`DanhSachMonHocActivity`) | ✅ | ✅ | ✅ | ✅ Hoàn thành (còn thiếu click mở môn) |
 | Tạo dàn ý AI (`TaoDanYActivity`) | ✅ | ✅ | ✅ | ✅ Hoàn thành |
-| Xem dàn ý (`DanYActivity`) | ✅ | ✅ | ✅ | ✅ Hoàn thành (xếp lịch cần Deadline – xem 3.3) |
+| Xem dàn ý (`DanYActivity`) | ✅ | ✅ | ✅ | ✅ Hoàn thành |
 | Thanh điều hướng dùng chung (`ThanhDieuHuong`) | ✅ | ✅ | – | ✅ Hoàn thành |
 | Lịch học (`LichHocActivity`) | ✅ | 🟡 | ❌ | 🟡 Mới có lưới lịch tháng |
-| Tạo lịch / đặt Deadline (`TaoLichActivity`) | ❌ | ❌ | ❌ | ❌ Chưa làm (chờ API backend) |
+| Tạo lịch / đặt Deadline (`TaoLichActivity`) 🆕 | ✅ | ✅ | ✅ | ✅ Hoàn thành (chưa kiểm thử với backend thật) |
 | Hồ sơ cá nhân (`HoSoActivity`) | ❌ | ❌ | ❌ | ❌ Chưa làm |
 | ~~Tạo workspace (`TaoWorkspaceActivity`)~~ | – | – | – | ⛔ Không dùng nữa, thay bằng `TaoDanYActivity` |
 
@@ -36,7 +36,7 @@
 - Quyền `INTERNET` trong `AndroidManifest.xml`.
 
 ### 2.2. Giao diện (res/)
-- Hoàn thiện layout: chào mừng, đăng nhập, đăng ký, trang chủ, danh sách môn học, tạo dàn ý, xem dàn ý, lịch học.
+- Hoàn thiện layout: chào mừng, đăng nhập, đăng ký, trang chủ, danh sách môn học, tạo dàn ý, xem dàn ý, lịch học, tạo lịch (`taolichactivity.xml`) 🆕.
 - Thanh điều hướng dưới (`thanhdieuhuong.xml`, nhúng bằng `<include>`).
 - Layout item: `item_monhoc`, `item_nhatky`, `item_dan_y`, `item_lich`, `item_daily_task`.
 - Bộ drawable (nền gradient, nút bo tròn, chip, badge, icon), color selector cho ô nhập liệu, theme sáng/tối.
@@ -46,7 +46,7 @@
 - Mỗi màn hình chỉ cần 1 dòng: `ThanhDieuHuong.caiDat(this, ThanhDieuHuong.TAB_...)`.
 - Tô màu đúng tab đang mở (trước đây XML luôn tô tab "Tổng quan").
 - Hành vi chuyển màn thống nhất: bấm tab hiện tại thì không làm gì, bấm "Tổng quan" thì quay về Trang chủ có sẵn, các màn khác tự đóng khi chuyển để không chồng màn hình.
-- Đã áp dụng cho 5 màn: Trang chủ, Nạp liệu (`TaoDanYActivity`), Danh sách môn, Dàn ý, Lịch học.
+- Đã áp dụng cho 6 màn: Trang chủ, Nạp liệu (`TaoDanYActivity`), Danh sách môn, Dàn ý, Lịch học, Tạo lịch.
 
 ### 2.4. Màn hình Chào mừng – `WelcomeActivity`
 - Kiểm tra token trong `SharedPreferences` (`ZenTaskPrefs`).
@@ -79,17 +79,31 @@
 - Nhận danh sách dàn ý (JSON) qua Intent và hiển thị dạng cây (`OutlineTreeAdapter`): tính độ sâu theo `ParentId`, thụt lề 16dp mỗi cấp, in đậm mục gốc.
 - Gắn nhãn **"Cần thêm tài liệu"** khi độ tin cậy AI < 0.6.
 - Bấm vào mục → hộp thoại hiển thị nội dung chi tiết và độ tin cậy.
-- **Nút "Lên lịch" đã kết nối API thật** 🆕 (`POST api/lichhoc/{idSubject}`), bỏ phần giả lập:
-  - Khóa nút và đổi chữ "Đang xếp lịch..." khi đang gọi, chặn bấm đúp.
-  - Thành công → báo số mục đã xếp, mở `LichHocActivity` kèm `idSubject`.
-  - Lỗi 401 → về màn Đăng nhập. Lỗi khác → hiện thông báo của backend.
-  - Lỗi mạng → phân biệt quá thời gian chờ và mất kết nối. Lỗi thì **ở lại màn hình**, không tự chuyển trang.
+- Nút **"Lên lịch học tự động"** 🆕 mở `TaoLichActivity`, truyền kèm `idSubject`, tên môn và số mục dàn ý. Phần gọi API xếp lịch đã chuyển sang màn Tạo lịch vì backend cần Deadline trước.
 
-### 2.9. Lịch học – `LichHocActivity` (phần giao diện lịch)
+### 2.9. Tạo lịch / đặt Deadline – `TaoLichActivity` 🆕
+- **Giao diện (`taolichactivity.xml`)**, cùng phong cách với màn Tạo dàn ý:
+  - Nút quay lại, thẻ thông tin môn (tên môn, số mục).
+  - Ô chọn hạn chót mở `DatePickerDialog`, sớm nhất là **ngày mai**.
+  - 4 chip chọn nhanh: 3 ngày, 1 tuần, 2 tuần, 1 tháng (số ngày lưu trong `android:tag`).
+  - Khung xem trước: số ngày học và khoảng số mục mỗi ngày (cùng công thức chia đều với backend).
+  - Ghi chú cách xếp lịch, nút "Xếp Lịch Học", lớp phủ loading, thanh điều hướng.
+- **Luồng 2 bước:** `PATCH api/subject/{idSubject}` (lưu deadline) → `POST api/lichhoc/{idSubject}` (xếp lịch) → mở `LichHocActivity` và đóng màn hiện tại.
+- Chữ trên lớp phủ loading đổi theo từng bước ("Đang lưu hạn chót..." → "Đang xếp lịch học..."). Chặn bấm đúp và chặn nút Back khi đang gọi API.
+- Báo riêng trường hợp mọi mục đã được xếp lịch từ trước (API trả danh sách rỗng).
+- Xử lý lỗi: 401 → về đăng nhập, 400 → hiện thông báo của backend, phân biệt quá thời gian chờ và mất kết nối. Lỗi thì **ở lại màn hình** để thử lại.
+- Model mới: `CapNhatDeadlineRequest`, `CapNhatDeadlineData`. Hằng mới `Constants.EXTRA_SO_MUC`.
+
+### 2.10. Backend – API cập nhật Deadline 🆕
+- `PATCH api/subject/:idSubject`, body `{ "deadline": "YYYY-MM-DD" }` → trả `{ idSubject, deadline }`.
+- Kiểm tra: đúng định dạng, là ngày có thật (chặn kiểu 30/02), phải **sau hôm nay**, và môn học phải thuộc người dùng đang đăng nhập.
+- File đã sửa: `routes/subject.routes.js`, `controllers/subject.controller.js`, `services/subject.service.js`.
+
+### 2.11. Lịch học – `LichHocActivity` (phần giao diện lịch)
 - Tạo lưới lịch tháng 7 cột bắt đầu từ Thứ 2, có ngày đệm tháng trước/sau (`LichThangAdapter`).
 - Làm nổi bật ngày đang chọn, hiển thị tiêu đề tháng và tiêu đề "Hôm nay"/"Ngày mai".
 
-### 2.10. Tầng mạng & model
+### 2.12. Tầng mạng & model
 - `RetrofitClient` (singleton), `ApiResponse<T>` dùng chung.
 - **`ApiService` đã được đối chiếu với backend** 🆕: thêm tiền tố `api/` cho mọi endpoint, sửa `subject/create` → `api/subject`, thay `Call<Object>` bằng kiểu dữ liệu cụ thể, chia nhóm theo file `routes/*.js`.
 - **Model `LichHoc`** 🆕 cho API xem lịch theo ngày: các trường của `DanY` + class lồng `MonHoc` chứa tên môn, getter `getTenMon()` có kiểm tra null.
@@ -101,6 +115,7 @@
 | `GET` | `api/home` | Dữ liệu trang chủ | `HomeResponse` | ✅ |
 | `POST` | `api/subject` | Tạo môn học | `ApiResponse<TaoSubjectData>` | ✅ |
 | `POST` | `api/input/process` | Upload tài liệu cho AI tạo dàn ý | `ApiResponse<List<DanY>>` | ✅ |
+| `PATCH` | `api/subject/{idSubject}` 🆕 | Cập nhật hạn chót (Deadline) | `ApiResponse<CapNhatDeadlineData>` | ✅ |
 | `POST` | `api/lichhoc/{idSubject}` | Tự động xếp lịch học | `ApiResponse<List<DanY>>` | ✅ |
 | `GET` | `api/lichhoc/{ngay}` | Xem bài học theo ngày | `ApiResponse<List<LichHoc>>` | ❌ |
 | `PATCH` | `api/lichhoc/{idDanY}/hoanthanh` | Đánh dấu hoàn thành | `ApiResponse<DanY>` | ❌ |
@@ -118,13 +133,14 @@
 
 ### 3.2. Các màn hình chưa làm
 - [ ] `HoSoActivity`: lớp rỗng, `hoso.xml` chưa có nội dung.
-- [ ] `TaoLichActivity`: lớp rỗng. Dự kiến dùng để **chọn Deadline** trước khi xếp lịch (xem 3.3).
 - [ ] `TaoWorkspaceActivity`: không còn nơi nào sử dụng, có thể xóa file.
 
-### 3.3. Xếp lịch cần Deadline (phụ thuộc backend)
-- [ ] Backend chỉ xếp lịch khi môn học có `DeadLine`, nhưng lúc tạo môn **không gửi deadline** và backend **chưa có API cập nhật deadline**. Bấm "Lên lịch" hiện luôn nhận lỗi 400 *"Subject chưa có hạn chót"*.
-- [ ] Cần backend bổ sung, ví dụ `PATCH api/subject/:idSubject` với body `{ deadline: "YYYY-MM-DD" }`, rồi làm `TaoLichActivity` (DatePicker → cập nhật deadline → gọi xếp lịch).
-- Tạm thời: có thể đặt cột `Deadline` trực tiếp trong database để kiểm thử.
+### 3.3. Tạo lịch – phần còn lại
+- [x] ~~Backend chưa có API cập nhật Deadline~~ → đã thêm `PATCH api/subject/:idSubject` và làm xong `TaoLichActivity` (xem 2.9, 2.10).
+- [ ] Chưa kiểm thử end-to-end với backend thật (cần khởi động lại server Node để nhận route mới).
+- [ ] Nếu môn đã có deadline, màn Tạo lịch chưa hiện sẵn ngày cũ (API `home` chưa trả deadline cho màn này).
+- [ ] Đổi deadline **không xếp lại** các mục đã có lịch (backend chỉ xếp mục có `NgayLenLich = null`). Muốn "xếp lại toàn bộ" cần thêm API riêng.
+- [ ] Model `Subject` (Android) đọc key `"Deadline"`, nhưng Sequelize trả về `"DeadLine"` → nếu sau này dùng trường này cần thêm `alternate = {"DeadLine"}` vào `@SerializedName`.
 
 ### 3.4. Lịch học
 - [ ] Chưa gọi `GET api/lichhoc/{ngay}` để lấy bài học theo ngày (đã có model `LichHoc`).
@@ -149,8 +165,8 @@
 - [ ] `ZenTaskApplication` chưa khai báo trong Manifest.
 
 ### 3.7. Cấu hình
-- [ ] **Manifest:** màn hình khởi động (LAUNCHER) đang là `LichHocActivity` → cần đổi về `WelcomeActivity`.
-- [ ] **Manifest:** chưa khai báo `WelcomeActivity`, `HoSoActivity`, `TaoLichActivity` → bấm tab "Thông tin" sẽ **crash** (`ActivityNotFoundException`).
+- [x] ~~Manifest: LAUNCHER sai~~ → đã là `WelcomeActivity`. Đã khai báo thêm `TaoLichActivity`, `LichHocActivity` 🆕.
+- [ ] **Manifest:** chưa khai báo `HoSoActivity` → bấm tab "Thông tin" sẽ **crash** (`ActivityNotFoundException`).
 - [ ] Chưa cấu hình timeout cho OkHttp (AI xử lý 1–2 phút có thể vượt timeout mặc định 10 giây).
 - [ ] Gọi HTTP (không HTTPS) tới `10.0.2.2` cần bật `usesCleartextTraffic` hoặc `network_security_config`.
 - [ ] `BASE_URL` đang viết cứng, chỉ dùng được trên Emulator.
@@ -164,9 +180,9 @@
 ## 🎯 4. Đề xuất thứ tự thực hiện tiếp theo
 
 1. Sửa lỗi build ở `ApiService` (tạo model Auth hoặc tạm comment).
-2. Sửa `AndroidManifest.xml` (LAUNCHER, khai báo đủ Activity, cleartext) và thêm timeout OkHttp.
+2. Sửa `AndroidManifest.xml` (khai báo `HoSoActivity`, cleartext) và thêm timeout OkHttp.
 3. Hoàn thiện Đăng nhập / Đăng ký + `TokenManager`.
-4. Phối hợp backend thêm API cập nhật Deadline → làm `TaoLichActivity`.
+4. Kiểm thử luồng Tạo lịch với backend: chọn deadline → xếp lịch → mở Lịch học.
 5. Hoàn thiện Lịch học: lấy công việc theo ngày (`DailyTaskAdapter` + `LichHoc`), đánh dấu hoàn thành, chuyển tháng.
 6. Làm `HoSoActivity`, xóa `TaoWorkspaceActivity`, kiểm thử end-to-end.
 
@@ -176,4 +192,5 @@
 
 | Ngày | Nội dung |
 | :-- | :-- |
+| 25/09/2026 | Làm màn **Tạo lịch** (`TaoLichActivity` + `taolichactivity.xml`): chọn Deadline, xem trước khối lượng học, gọi 2 API nối tiếp. Backend thêm `PATCH api/subject/:idSubject`. Nút "Lên lịch" ở `DanYActivity` chuyển sang mở màn Tạo lịch. Khai báo `TaoLichActivity`, `LichHocActivity` trong Manifest. |
 | 25/09/2026 | Kết nối API thật cho nút "Lên lịch" (`DanYActivity`). Đối chiếu và sửa toàn bộ endpoint trong `ApiService`. Thêm model `LichHoc`. Gom thanh điều hướng vào `ThanhDieuHuong`. Nút "Thêm môn học" chuyển sang `TaoDanYActivity`. |
